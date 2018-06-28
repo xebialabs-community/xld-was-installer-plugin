@@ -9,9 +9,11 @@
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -->
-hostname ${deployed.container.name}
 <#if deployed.ipAddress?has_content>
+  <#if deployed.ipAddressExpression == true>
+echo $(${deployed.ipAddress}) ${deployed.container.name} >> /etc/hosts
+  <#else>
 echo ${deployed.ipAddress} ${deployed.container.name} >> /etc/hosts
-<#else>
-echo ${deployed.container.address} ${deployed.container.name} >> /etc/hosts
+  </#if>
 </#if>
+hostname ${deployed.container.name}

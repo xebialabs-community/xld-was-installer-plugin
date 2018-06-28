@@ -20,6 +20,7 @@
   <generate-deployable type="wasx.SetHostSpec" extends="generic.Resource" />
   <property name="createScript" hidden="true" default="wasx/install/setHost.sh" />
   <property name="ipAddress" />
+  <property name="ipAddressExpression" kind="boolean" default="false" label="Is expression" />
 </type>
 
 <type type="wasx.WasInstaller" extends="generic.ExecutedScript" deployable-type="wasx.WasInstallerSpec" container-type="overthere.Host" >
